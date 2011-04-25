@@ -1,0 +1,43 @@
+!!!XML
+!!!5
+- @less_filename = 'less-1.0.41.min'
+%html
+  %head
+    %title
+      = yield :title
+    - @inline_javascript = false
+    - (yield :import_javascripts).split(/\s+/).uniq.each do |js|
+      - if @inline_javascript
+        :javascript
+          = "#{File.new("ext/storyjs/#{%r(^story/) =~ js ? js : "lib/" + js}.js").read}"
+      - else
+        %script{:src=>"scripts/#{js}.js", :type=>'text/javascript'}
+    - ((yield :import_less) || "").split(/\s+/).uniq.each do |less|
+      - @less_needed = true
+      %link{:href=>"resource/#{less}.less", |
+            :type=>'text/css',                  |
+            :rel=>'stylesheet/less'}            |
+    - if @less_needed
+      - if @inline_javascript
+        :javascript
+          = "#{File.new("public/javascripts/#{@less_filename}.js").read}"
+      - else
+        %script{:src=>"scripts/#{@less_filename}.js", :type=>'text/javascript'}
+    - ((yield :import_stylesheets) || "").split(/\s+/).uniq.each do |css|
+      - if @inline_stylesheet
+        %style
+          = "#{File.new("ext/storyjs/resource/#{css}.css").read}"
+      - else
+        %link{:href=>"resource/#{css}.css", |
+              :type=>'text/css',                |
+              :rel=>'stylesheet'}               |
+    = yield :head
+    %style{:type=>'text/css'}
+      = yield :style
+  %body
+    #template{:style=>'display:none'}
+      = yield :template
+    = yield
+  %script{:type=>'text/javascript'}
+    = yield :script
+-# vim: set sw=2 ts=2 expandtab :

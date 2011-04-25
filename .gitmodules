@@ -1,0 +1,3 @@
+[submodule "ext/storyjs"]
+	path = ext/storyjs
+	url = git@github.com:adam-f/storyjs.git

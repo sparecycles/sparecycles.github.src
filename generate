@@ -1,0 +1,47 @@
+#!/bin/bash
+
+
+echo cd `dirname $0` && pushd `dirname $0`
+
+(
+  cd build
+  rm -rf adam-f.github.com
+  mkdir adam-f.github.com
+  cd adam-f.github.com
+  git init
+  git remote add target git@github.com:adam-f/adam-f.github.com.git
+)
+
+path=build/adam-f.github.com
+
+for file in source/*.html.haml; do 
+  target=`basename $file .haml`
+  echo generating $target
+  ruby shaml.rb $file app >"$path/$target"
+done
+
+mkdir "$path/scripts"
+mkdir "$path/scripts/story"
+mkdir "$path/resource"
+
+for file in ext/storyjs/story/*.js; do
+  echo cp "$file" "$path/scripts/story/"
+  cp "$file" "$path/scripts/story/"
+done 
+
+for file in ext/storyjs/lib/*.js; do
+  echo cp "$file" "$path/scripts/"
+  cp "$file" "$path/scripts/"
+done 
+
+for file in ext/storyjs/resource/*; do
+  echo cp "$file" "$path/resource/"
+  cp "$file" "$path/resource/"
+done 
+
+(
+  cd build/adam-f.github.com
+  git add *
+)
+
+popd
