@@ -4,58 +4,47 @@ require 'haml'
 module Shaml
   class Engine
     def initialize *args
-      @scope = { :engines => [], :content => {} }
+      @scope = { :engines => [], :content => {}, :features => {} }
     end
 
-    class Context
-      def initialize scope
-        @scope = scope
-      end
+    def engine
+      @scope[:engines].last
+    end
 
-      def engine
-        @scope[:engines].last
+    def capture &block
+      haml_context = eval("self", block.binding)
+      haml_context.capture_haml do
+        block.call
       end
+    end
 
-      def capture &block
-        haml_context = eval("self", block.binding)
-        haml_context.capture_haml do
-          block.call
-        end
+    def content_for content, &block
+      @scope[:content][content.to_sym] ||= "";
+      if block_given?
+        @scope[:content][content.to_sym] += capture &block
+      else
+        @scope[:content][content.to_sym] += content.first
       end
+    end
 
-      def content_for content, &block
-        @scope[:content][content.to_sym] ||= "";
-        if block_given?
-          @scope[:content][content.to_sym] += capture &block
-        else
-          @scope[:content][content.to_sym] += content.first
-        end
-      end
-
-      def uses template
-        input = File.open("source/feature/_#{template}.html.haml").read
-        engine = Haml::Engine.new(input)
-        @scope[:engines].push(engine)
-        ctx = Context.new(@scope);
-        engine.def_method(ctx, :render);
-        ctx.render
-      ensure
-        @scope[:engines].pop
-      end
+    def uses template
+      return if @scope[:features][template.to_sym]
+      @scope[:features][template.to_sym] = true
+      input = File.open("source/feature/_#{template}.html.haml").read
+      engine = Haml::Engine.new(input)
+      @scope[:engines].push(engine)
+      engine.render(self)
+    ensure
+      @scope[:engines].pop
     end
 
     def render template, layout = "= yield"
       template_engine = Haml::Engine.new(template)
-      template_context = Context.new(@scope)
-      template_engine.def_method(template_context, :render);
-
       layout_engine = Haml::Engine.new(layout)
-      layout_context = Context.new(@scope)
-      layout_engine.def_method(layout_context, :render);
 
-      @scope[:content][:_yield] = template_context.render
+      @scope[:content][:_yield] = template_engine.render(self)
 
-      layout_context.render do |*name|
+      layout_engine.render(self)do |*name|
         @scope[:content][name.first || :_yield] || ''
       end
     end
