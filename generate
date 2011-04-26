@@ -50,4 +50,8 @@ done
   fi
 )
 
+if [[ "$1" = "--run" ]]; then
+  ./server/run
+fi
+
 popd

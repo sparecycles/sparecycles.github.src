@@ -1,0 +1,7 @@
+#!/bin/bash
+
+pushd "`dirname "$0"`"/..
+
+node ext/antinode/server.js server/settings.json
+
+popd
