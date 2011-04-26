@@ -41,6 +41,11 @@ for file in ext/storyjs/resource/*; do
   cp "$file" "$path/resource/"
 done 
 
+for file in source/resource/*; do
+  echo cp -r "$file" "$path/"
+  cp "$file" "$path/"
+done 
+
 (
   cd build/adam-f.github.com
   git add *
