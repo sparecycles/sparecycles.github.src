@@ -1,142 +1,159 @@
-- uses :dialog
-- uses :ajax
-- uses :flickr
-- uses :message
-- uses :image_loader
+- uses :story
+- uses :template
+- uses :prettify
 
-.main-content
-  .template
+- content_for :import_stylesheets do
+  style/index
 
-- content_for :template do
-  .empty
-
-- content_for :script do
-  :plain
-    $('#template .empty').defineTemplate('empty', {});
-    var main_content = new Template.ViewModel({template:'empty'});
-    $('.main-content .template').template(main_content, {
-      '.': {
-        $template: '.template',
-        $in: '.data'
-      }
-    });
-
-    function SetMainContent(template, data) {
-      main_content.locked(function() {
-        this.data('template', template);
-        this.data('data', data);
-      });
-    }
-
-
-- content_for :template do
-  .flickr-photos
-    .photos
-      %img.photo
-
-- content_for :script do
-  :plain
-    $('#template .flickr-photos').defineTemplate('flickr-photos', {
-      '.photo' : { $each: { photo: '.photos.photo' },
-        '@src' : 'photo.url_m'
-      }
-    });
+- content_for :import_javascripts do
+  storyjs/jquery-1.5.2
+  connect4
 
 - content_for :title do
-  Story
+  story.js
 
 - content_for :script do
-  :plain 
-    var DialogStory = new Story(Story.Dialog('basic-dialog', {
-      content: 'This is a test dialog',
-      title: 'Testing... 1. 2. 3.'
-    }, [
-      { label: 'login', action: [ '@flickr',
-        [
-          {
-            setup: function() {
-              this.popup = this.scope.popup = window.open('/popup', 'authenticate', _.join({
-                width: 800,
-                height: 800,
-                screenX: 200,
-                screenY: 200,
-                toolbar: 'no',
-                location: 'no',
-                status: 'no',
-                copyhistory: 'no',
-                scrollbars: 'yes'
-              }, ['=',',']));
-              this.popup.onclose = function() { alert('BANG!'); };
-            },
-            teardown: function() {
-              if(!this.popup.closed) this.popup.close();
-            }
-          },
-          [
-            Story.Flickr('flickr.auth.getFrob', {
-            }, { timeout: 5000 }),
-            Story.Switch({
-              success: [
-                Story.Live(500, Story.Message(
-                  'Close the Flickr Auth Popup to Continue'
-                ), { 
-                  setup: function() {
-                    var url = 'http://flickr.com/services/auth';
-                    var params = { 
-                      api_key: Flickr.api_key,
-                      perms: 'read',
-                      frob: this.scope.data.frob._content
-                    };
-                    this.scope.popup.location = url + '?' + Flickr.Sign(params)
-                  }, 
-                  update: function() {
-                    return !this.scope.popup.closed;
-                  } 
-                }),
-                Story.Flickr('flickr.auth.getToken', function() {
-                  return {frob: this.scope.data.frob._content}
-                }),
-                function() {
-                  this.scope.api_key = this.scope.data.auth.token._content; 
-                  this.scope.user = this.scope.data.auth.user;
-                },
-                [Story.Flickr('flickr.photos.search', function() {
-                  return {
-                    api_key: this.scope.api_key, 
-                    user_id: this.scope.user.nsid,
-                    extras: 'url_m',
-                    safe_search: 1
-                  };
-                }), Story.Message(function() { 
-                  return 'Loading Photos for ' + this.scope.user.fullname + '...';
-                })],
-                function() {
-                  this.scope.dialog.data('photos', 
-                    this.scope.data.photos
-                  );
-                  this.scope.dialog.data('type', 'flickr-photos');
-                  this.scope.dialog.data('dialog.buttons', [{
-                    label: 'close',
-                    action: function() { this.scope.dialog.close(); }
-                  }]); 
-                }
-              ],
-              '*': [
-                Story.Message("Error!"),
-                Story.Delay(3000)
-              ]
-            })
-          ]
-        ]
-      ]}
-    ]));
-    var canvas_model = new Template.ViewModel({width: 400, height: 300});
-    $('<div/>').appendTo('body').template(canvas_model, {
-      '.' : { $template: '=image-loader' }
+  :plain
+    jQuery(function($) {
+      $('body').addClass('loaded');
+      prettyPrint();
     });
-    $('<button>dialog</button>')
-    .click(function() {
-      DialogStory.tell();
-    })
-    .appendTo($('body'));
+
+%h1
+  Story
+
+%pre.main-example.prettyprint
+  :plain
+    Connect4Story = Story([
+      [
+        {
+          setup: function() {
+            Story.write('game', new Connect4(5,5));
+          },
+        }, Story.Ignore(Story.Loop(
+          { setup: function() {
+            DrawGame("Red's turn", Story.read('game'), Story.read('target'));
+            $('.column', Story.read('target')).each(function(index) {
+              $(this).unbind('click').click(Story.callback(function() {
+                var game = Story.read('game');
+                if(game.can_move(index)) game.move("red", index);
+                this.moved = true;
+              }));
+            });
+          }, update: function() { 
+            return !this.moved; 
+          }, teardown: function() { 
+            Story.read('target').contents().remove(); 
+          } },
+          { setup: function() {
+            DrawGame("Blue's turn", Story.read('game'), Story.read('target'));
+            $('.column', Story.read('target')).each(function(index) {
+              $(this).unbind('click').click(Story.callback(function() {
+                var game = Story.read('game');
+                if(game.can_move(index)) game.move("blue", index);
+                this.moved = true;
+              }));
+            });
+          }, update: function() { 
+            return !this.moved; 
+          }, teardown: function() { 
+            Story.read('target').contents().remove(); 
+          } }
+        )), function() {
+          var winner = Story.read('game').winner();
+          if(winner) Story.write('winner', winner);
+          return !winner;
+        }
+      ], 
+      function() {
+        var target = Story.read('target');
+        DrawGame(Story.read('winner') + ' won!', Story.read('game'), target);
+        jQuery('&lt;button/&gt;')
+          .text("Play Again?")
+          .click(function() {
+            Connect4Story.tell({ target: target });
+          })
+          .prependTo(Story.read('target').find('.connect4'));
+      }
+    ]);
+.main
+  %p.large-font
+    Lightweight, simple, scalable, modular metascripting.  Linearizes and abstracts callback chains.
+    Makes complex flow simple.
+  %p
+    Story is a modular framework for handling asynchronous events.
+
+  %div.target
+
+
+:javascript
+  function DrawGame(caption, game, target) {
+    target.contents().remove();
+    var columns = [];
+    target.appendText(caption);
+    var c4 = jQuery('<div class="connect4"/>').appendTo(target);
+    for(var col = 0; col < game.columns.length; col++) {
+      var column = jQuery('<div class="column"/>').appendTo(c4);
+      for(var row =  game.rows-1; row >= 0; row--) {
+        jQuery('<div class="cell"/>')
+          .appendTo(column)
+          .addClass(game.columns[col][row]);
+      }
+    }
+  };
+  Connect4Story = Story([
+    [
+      {
+        setup: function() {
+          Story.write('game', new Connect4(5,5));
+        },
+      }, Story.Ignore(Story.Loop(
+        { setup: function() {
+          DrawGame("Red's turn", Story.read('game'), Story.read('target'));
+          $('.column', Story.read('target')).each(function(index) {
+            $(this).unbind('click').click(Story.callback(function() {
+              var game = Story.read('game');
+              if(game.can_move(index)) game.move("red", index);
+              this.moved = true;
+            }));
+          });
+        }, update: function() { 
+          return !this.moved; 
+        }, teardown: function() { 
+          Story.read('target').contents().remove(); 
+        } },
+        { setup: function() {
+          DrawGame("Blue's turn", Story.read('game'), Story.read('target'));
+          $('.column', Story.read('target')).each(function(index) {
+            $(this).unbind('click').click(Story.callback(function() {
+              var game = Story.read('game');
+              if(game.can_move(index)) game.move("blue", index);
+              this.moved = true;
+            }));
+          });
+        }, update: function() { 
+          return !this.moved; 
+        }, teardown: function() { 
+          Story.read('target').contents().remove(); 
+        } }
+      )), function() {
+        var winner = Story.read('game').winner();
+        if(winner) Story.write('winner', winner);
+        return !winner;
+      }
+    ], 
+    function() {
+      var target = Story.read('target');
+      DrawGame(Story.read('winner') + ' won!', Story.read('game'), target);
+      jQuery('<button/>')
+        .text("Play Again?")
+        .click(function() {
+          Connect4Story.tell({ target: target });
+        })
+        .prependTo(Story.read('target').find('.connect4'));
+    }
+  ]);
+
+  Connect4Story.tell({ target: jQuery('.target') })
+
 -# vim: set sw=2 ts=2 expandtab :

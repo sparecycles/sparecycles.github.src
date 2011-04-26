@@ -1,0 +1,89 @@
+#content {
+  width: 960px;
+  overflow: hidden;
+}
+
+body {
+  -webkit-transition: 1s;
+  padding: 0 3px;
+  font-family: sans-serif;
+  margin: auto;
+}
+
+.large-font {
+  font-size: 1.5em;
+}
+
+body.loaded {
+  width: 960px;
+  background-color: #332233;
+  color: #CCDDCC;
+  background-color: #332233;
+}
+
+body.loaded h1 {
+  width: 500px;
+}
+
+p {
+  color: #CDC;
+  -webkit-transition: 1s;
+}
+
+p:hover {
+  color: #EEFFEE;
+}
+
+h1 {
+  width: 500px;
+  font-size: 2em;
+  border: 2px solid #666;
+  background-color: #636;
+  color: #DED;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+pre.main-example {
+  float: right;
+  width: 400px;
+  background: #DDC;
+}
+
+.connect4 {
+  position: relative;
+}
+
+.connect4 .column {
+  display: inline-block;
+  width: 50px;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+}
+
+.connect4 .cell {
+  display: block;
+  height: 40px;
+  margin: 3px;
+  border: 2px solid black;
+}
+
+.connect4 button {
+  position: absolute;
+  margin: 40px 40px;
+  font-size: 1.7em;
+}
+
+.connect4 .cell.red {
+  border: 20px solid red;
+  height: 0px;
+  margin: 5px;
+  border-radius: 20px;
+}
+
+.connect4 .cell.blue {
+  border: 20px solid blue;
+  height: 0px;
+  margin: 5px;
+  border-radius: 20px;
+}

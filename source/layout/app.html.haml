@@ -11,10 +11,10 @@
         :javascript
           = "#{File.new("ext/storyjs/#{%r(^story/) =~ js ? js : "lib/" + js}.js").read}"
       - else
-        %script{:src=>"scripts/#{js}.js", :type=>'text/javascript'}
+        %script{:src=>"#{js}.js", :type=>'text/javascript'}
     - ((yield :import_less) || "").split(/\s+/).uniq.each do |less|
       - @less_needed = true
-      %link{:href=>"resource/#{less}.less", |
+      %link{:href=>"#{less}.less", |
             :type=>'text/css',                  |
             :rel=>'stylesheet/less'}            |
     - if @less_needed
@@ -28,7 +28,7 @@
         %style
           = "#{File.new("ext/storyjs/resource/#{css}.css").read}"
       - else
-        %link{:href=>"resource/#{css}.css", |
+        %link{:href=>"#{css}.css", |
               :type=>'text/css',                |
               :rel=>'stylesheet'}               |
     = yield :head
@@ -37,7 +37,8 @@
   %body
     #template{:style=>'display:none'}
       = yield :template
-    = yield
+    #content
+      = yield
   %script{:type=>'text/javascript'}
     = yield :script
 -# vim: set sw=2 ts=2 expandtab :

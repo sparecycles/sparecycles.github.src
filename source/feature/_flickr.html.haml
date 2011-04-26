@@ -6,24 +6,81 @@
 
 - content_for :script do
   :plain
-    Flickr = {};
-    Flickr.Sign = function(request) {
-      request = _.overlay({}, request, {
-         api_key: "#{@flickr_api_key}"
-      });
-      var keys = Object.keys(request).sort();
-      var signature_string = "#{@flickr_api_secret}";
-      var querys = [];
-      _.each(keys, function(key) {
-        var value = request[key];
-        signature_string += key;
-        signature_string += value;
-        querys.push(key + '=' + value);
-      });
-      var api_sig = hex_md5(signature_string);
-      querys.push('api_sig=' + api_sig);
-      return querys.join('&');
-    }
+    Flickr = _.Class(function(options) {
+      this.api_key = options.api_key || "#{@flickr_api_key}";
+      this.api_secret = options.api_secret || "#{@flickr_api_secret}";
+      this.state = {}; 
+    }, {
+      cancel_request: function() {
+        if(this.hasOwnProperty('xhr')) {
+          this.xhr.cancel();
+          delete this.xhr;
+        }
+      },
+      getFrob: function(callback) {
+        this.cancel_request();
+        return request('flickr.auth.getFrob', function(result, status, xhr) {
+          this.state = { 
+            name: 'frob',
+            frob: result.frob._content
+          };
+          callback.call(this, true);
+        }, function() {
+          callback.call(this, false);
+        });
+      },
+      getToken: function(callback) {
+        if(!this.state.name == "frob") throw new Error("need to be frobbin to get token");
+         
+        return request('flickr.auth.getToken', function(result, status, xhr) {
+          this.state = {};
+          this.token = result.data.auth.token._content;
+          callback.call(this, true);
+        }, function() {
+          callback.call(this, false);
+        });
+      },
+      request: function(method, data, callback, error, ajax_options) {
+        var self = this;
+        this.xhr = jQuery.ajax(_.overlay({ 
+          cache: true,
+          url: 'http://api.flickr.com/services/rest/',
+          data: this.sign(_.overlay({
+            method: method,
+            format: 'json'
+          }, data || {})),
+          dataType: 'jsonp',
+          jsonp: false,
+          jsonpCallback: 'jsonFlickrApi',
+          success: function() {
+            if(callback) callback.apply(self, arguments);
+          },
+          error: function() {
+            if(error) error.apply(self, arguments);
+          },
+          timeout: 1000*10
+        }, ajax_options || {}));
+      },
+      sign: function(request) {
+        request = _.overlay({}, request, {
+           api_key: this.api_key,
+        });
+        var keys = Object.keys(request).sort();
+        var signature_string = this.api_secret;
+        var querys = [];
+        _.each(keys, function(key) {
+          var value = request[key];
+          signature_string += key;
+          signature_string += value;
+          querys.push(key + '=' + value);
+        });
+        var api_sig = hex_md5(signature_string);
+        querys.push('api_sig=' + api_sig);
+        return querys.join('&');
+      }
+    }, {
+      
+    });
     Story.Plot.Define('Flickr', function(method, data, options) {
       this.ajax_options = options;
       this.data = data;

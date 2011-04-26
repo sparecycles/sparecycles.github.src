@@ -7,12 +7,12 @@
 - content_for :script do
   :plain 
     var file = ({
-      litijs: 'scripts/story/litijs.js',
-      template: 'scripts/story/template.js',
-      plot: 'scripts/story/plot.js',
-      story: 'scripts/story/story.js',
-      layer: 'scripts/story/layer.js',
-    })[window.location.search.slice(1)] || 'scripts/story/story.js';
+      litijs: 'storyjs/story/litijs.js',
+      template: 'storyjs/story/template.js',
+      plot: 'storyjs/story/plot.js',
+      story: 'storyjs/story/story.js',
+      layer: 'storyjs/story/layer.js',
+    })[window.location.search.slice(1)] || 'storyjs/story/story.js';
     
     Litijs($('body'), file, function() {
       if(window.location.hash) {

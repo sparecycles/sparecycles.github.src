@@ -22,28 +22,28 @@ for file in source/*.html.haml; do
   ruby shaml.rb $file app >"$path/$target"
 done
 
-mkdir "$path/scripts"
-mkdir "$path/scripts/story"
+mkdir "$path/storyjs"
+mkdir "$path/storyjs/story"
 mkdir "$path/resource"
 
 for file in ext/storyjs/story/*.js; do
-  echo cp "$file" "$path/scripts/story/"
-  cp "$file" "$path/scripts/story/"
+  echo cp "$file" "$path/storyjs/story/"
+  cp "$file" "$path/storyjs/story/"
 done 
 
 for file in ext/storyjs/lib/*.js; do
-  echo cp "$file" "$path/scripts/"
-  cp "$file" "$path/scripts/"
+  echo cp "$file" "$path/storyjs/"
+  cp "$file" "$path/storyjs/"
 done 
 
 for file in ext/storyjs/resource/*; do
-  echo cp "$file" "$path/resource/"
-  cp "$file" "$path/resource/"
+  echo cp "$file" "$path/storyjs/"
+  cp "$file" "$path/storyjs/"
 done 
 
 for file in source/resource/*; do
   echo cp -r "$file" "$path/"
-  cp "$file" "$path/"
+  cp -r "$file" "$path/"
 done 
 
 (
