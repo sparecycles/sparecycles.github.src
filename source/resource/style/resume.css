@@ -1,16 +1,42 @@
-body { 
-  background: #3D3;
-  margin: 3px;
+body {
+  background: black;
 }
 
-#container {
+.slide {
+  border-bottom: 1px solid #222;
+  border-top: 1px solid #777;
+  font-size: 3em;
+  font-family: sans-serif;
+  background-color: #344;
+  color: #DDF;
 }
 
-#content {
-  border-radius: 30px 20px;
-  border: 3px solid black;
-  background: white;
-  height: 1000px;
-  width: 800px;
-  margin: auto;
+.slide-content {
+  padding: 0 10%;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
 }
+
+.slide-content ul,.slide-content ol {
+  font-size: .5em;
+  width: 40%;
+}
+
+.slide-content li {
+  text-align: left;
+}
+
+.slide:first-child { border-top: none; }
+.slide:last-child { border-bottom: none; }
+
+#timeline {
+  display: none;
+  position: fixed;
+  color: white;
+}
+#timeline .background {
+  opacity: 0.5;
+  background-color: gray;
+}
+  

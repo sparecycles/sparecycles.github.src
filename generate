@@ -19,7 +19,7 @@ path=build/adam-f.github.com
 for file in source/*.html.haml; do 
   target=`basename $file .haml`
   echo generating $target
-  ruby shaml.rb $file app >"$path/$target"
+  ruby shaml.rb $file app >"$path/$target" || exit 1
 done
 
 mkdir "$path/storyjs"

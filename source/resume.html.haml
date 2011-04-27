@@ -4,4 +4,159 @@
 - content_for :import_stylesheets do
   style/resume
 
+- content_for :title do
+  Resume of Adam
 
+- content_for :script do
+  :plain
+    jQuery(function($) {
+      $(window).bind('resize', function(){
+        $('.slide').css({
+         'height' : $(window).height() 
+        });
+        $('.slide-content').css({
+         'width' : $(window).width(),
+         'height' : $(window).height()
+        });
+      });
+
+      $('a').click(function(event) {
+        event.stopPropagation();
+      });
+      $('.slide').live('click', function() {
+        var next_slide = $(this).next('.slide');
+        if(!next_slide.length) next_slide = $('.slide').eq(0);
+        if(next_slide.length) {
+          $('html,body').animate({
+            scrollTop: next_slide.eq(0).offset().top
+          }, 'slow');
+        }
+      });
+
+      $(window).resize();
+    });
+
+#timeline-background
+#timeline
+  .uptick
+    .year '82
+  .downtick
+    .year '90
+  .downtick
+    .year '00
+  .downtick
+    .year '01
+  .downtick
+    .year '05
+  .downtick
+    .year '10
+  .downtick
+    .year '11
+
+.slide
+  .slide-content
+    My name is Adam Freidin
+.slide
+  .slide-content
+    I am a programmer.
+.slide
+  .slide-content
+    This is my story.
+.slide
+  .slide-content
+    I was introduced to computers when I was little
+.slide
+  .slide-content
+    and introduced to programming when I was 10.
+.slide
+  .slide-content
+    By the end of highschool I knew Pascal and C (and C++), (and a
+    really poorly implemented language I developed 
+    because I didn't know that I couldn't), also T
+    %span{:style=>"position:relative; top: .5ex; left:-.1667em; margin-right:-.25em;"}>< E
+    X, and a teensy bit o' Forth.
+.slide
+  .slide-content
+    I studied at UCSC and received a planned BA in Mathematics,
+    and an unplanned BS in Computer Science.
+.slide
+  .slide-content
+    At UCSC, I experienced more C, C++,
+    ML, Lisp, Scheme, Prolog, SQL (and xQuery), PHP, and Java.
+    I also had a small programming job involving server and client-side java.
+.slide
+  .slide-content
+    I then worked at Santa Cruz Games right in 
+    downtown Santa Cruz developing Video Games.
+    I would say Embedded Systems, except it was fun.
+.slide
+  .slide-content
+    I developed many different things there:
+    %ul
+      %li memory allocators,
+      %li loading patterns,
+      %li serializers,
+      %li late 80's-type graphics engines,
+      %li AI frameworks, and
+      %li a localization framework.
+.slide
+  .slide-content
+    I even developed a delta-loader for optimized transfer 
+    to Sunplus development boards (for leapfrog).  We showed it to the 
+    vendor and then it showed up in the next IDE revision.
+.slide
+  .slide-content
+    I shipped lots of games,
+    %ul
+      %li Superman Returns (DS)
+      %li Superman Returns - Fortress of Solitude (GBA) -- Highest rated superman game EVER
+      %li Godzilla Double Smash (DS) -- Google: "The Worst DS Game Ever"
+      %li Tombraider Underworld (DS)
+      %li Spiderman v.s. the Masked Menace (Plug and Play)
+      %li and more...
+.slide
+  .slide-content
+    %p
+      I did about 80% of the programming for Spiderman:  I wrote the tool,
+      the engine, the gameplay, the AI systems, and all the level scripting.
+      Everything but the art and the audio system.  It was a great 9 months.
+.slide
+  .slide-content
+    The tool for Spiderman relied upon my reflection system for C++
+    which adds some dynamic features to the language.  By this point
+    I was combing a hardcopy of the ANSI/ISO standard for features
+    I could use.  I bet you never heard of access declarations, neither had I.
+.slide
+  .slide-content
+    We used SCons for the the build system, so I learn a little python too.
+.slide
+  .slide-content
+    %div
+      %p
+        After Santa Cruz Games closed I spent some time at home
+        and picked up Photography.  Sometimes I even think I 
+        might be getting good.
+    %a{:href=>"http://www.flickr.com/photos/-adam/5656655460/",          |
+       :title=>"New Tiltlens Fullframe Test by Adam Freidin, on Flickr", |
+       :target=>"_blank"}                                                |
+      -# --
+      %img{:src=>("http://farm6.static.flickr.com/" +  |
+                  "5103/5656655460_16d1e62288.jpg"),   |
+           :alt=>"New Tiltlens Fullframe Test"}        |
+.slide
+  .slide-content
+    %p
+      I even have a few shots in the local paper
+    %a{:href=>"http://www.flickr.com/photos/-adam/sets/72157626467454959/with/5647876504/", :target=>"_blank"}
+      %img{:src=>"http://farm6.static.flickr.com/5110/5647876504_abcef811f1.jpg"}
+.slide
+  .slide-content
+    %p
+      What brought me back to Santa Cruz
+      was a rails startup called LineMonkey.  They're working on
+      a Point of Sale running on HTML5.  They threw me at
+      redeveloping the public online order interface and then the
+      point-of-sale itself.
+.slide
+  .slide-content
+-# vim: set sw=2 ts=2 expandtab :
