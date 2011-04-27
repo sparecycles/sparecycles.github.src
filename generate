@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 echo cd `dirname $0` && pushd `dirname $0`
 
 git submodule update --init
