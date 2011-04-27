@@ -37,8 +37,9 @@
   %body
     #template{:style=>'display:none'}
       = yield :template
-    #content
-      = yield
+    #container
+      #content
+        = yield
   %script{:type=>'text/javascript'}
     = yield :script
 -# vim: set sw=2 ts=2 expandtab :
