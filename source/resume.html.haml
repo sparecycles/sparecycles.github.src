@@ -7,6 +7,15 @@
 - content_for :title do
   Resume of Adam
 
+- content_for :style do
+  :plain
+    .tex-e {
+      position: relative;
+      top: .5ex;
+      left: -.1667em;
+      margin-right: -.25em;
+    }
+
 - content_for :script do
   :plain
     jQuery(function($) {
@@ -15,8 +24,11 @@
          'height' : $(window).height() 
         });
         $('.slide-content').css({
-         'width' : $(window).width(),
+         'width' : $('body').width(),
          'height' : $(window).height()
+        })
+        $('.timeline').css({
+         'width' : $('body').width()
         });
       });
 
@@ -34,24 +46,52 @@
       });
 
       $(window).resize();
+      $(window).scroll(function(ev) {
+        var slides = $('.slide');
+        var scrollTop = $(window).scrollTop();
+        for(var slide_index = 0; slide_index < slides.length; slide_index++) {
+          var slide = slides.eq(slide_index);
+          var middle = slide.offset().top + slide.height()/2;
+          if(middle > scrollTop) {
+            break;
+          }
+        }
+        console.log(slide_index);
+        var slide = slides.eq(slide_index);
+        var t_start = 1980;
+        var t_end = 2020;
+        var t_scale = 100/(t_end-t_start);
+        $('.timeline .indicator').css({
+          left: ((Number($('.from', slide).text()) || 1982) - t_start)*t_scale + "%",
+          right: (t_end - (Number($('.to', slide).text()) || 2010))*t_scale + "%"
+        });
+      });
     });
 
-#timeline-background
-#timeline
-  .uptick
-    .year '82
-  .downtick
-    .year '90
-  .downtick
-    .year '00
-  .downtick
-    .year '01
-  .downtick
-    .year '05
-  .downtick
-    .year '10
-  .downtick
-    .year '11
+.timeline-container
+  .timeline.background
+  .timeline
+    .indicator
+      .start
+      .end
+    -# .tick{:style=>"left:0%"}
+      .year 1980
+    .tick{:style=>"left:12.5%"}
+      .year 1985
+    .tick{:style=>"left:25%"}
+      .year 1990
+    .tick{:style=>"left:37.5%"}
+      .year 1995
+    .tick{:style=>"left:50%"}
+      .year 2000
+    .tick{:style=>"left:62.5%"}
+      .year 2005
+    .tick{:style=>"left:75%"}
+      .year 2010
+    .tick{:style=>"left:87.5%"}
+      .year 2015
+    -# .tick{:style=>"left:100%"}
+      .year 2020
 
 .slide
   .slide-content
@@ -60,37 +100,46 @@
   .slide-content
     I am a programmer.
 .slide
-  .slide-content
-    This is my story.
-.slide
+  .from 1987
+  .to 1992
   .slide-content
     %p I was introduced to computers when I was little...
     %img{:src=>"early.jpg"}
 .slide
+  .from 1992
+  .to 1993
   .slide-content
-    \...and introduced to programming when I was 10.
+    \...and started programming when I was 10.
 .slide
   .slide-content
     By the end of highschool I knew Pascal and C (and C++), (and a
     really poorly implemented language I developed 
     because I didn't know that I couldn't), also T
-    %span{:style=>"position:relative; top: .5ex; left:-.1667em; margin-right:-.25em;"}>< E
+    %span.tex-e>< E
     X, and a teensy bit o' Forth.
 .slide
+  .from 2001
+  .to 2005
   .slide-content
     I studied at UCSC and received a planned BA in Mathematics,
     and an unplanned BS in Computer Science.
 .slide
+  .from 2002
+  .to 2005
   .slide-content
     At UCSC, I experienced more C, C++,
     ML, Lisp, Scheme, Prolog, SQL (and xQuery), PHP, and Java.
     I also had a small programming job involving server and client-side java.
 .slide
+  .from 2006
+  .to 2009
   .slide-content
     I then worked at Santa Cruz Games right in 
     downtown Santa Cruz developing Video Games.
     I would say Embedded Systems, except it was fun.
 .slide
+  .from 2006
+  .to 2009
   .slide-content
     I developed many different things there:
     %ul
@@ -101,11 +150,15 @@
       %li AI frameworks, and
       %li a localization framework.
 .slide
+  .from 2006
+  .to 2009
   .slide-content
     I even developed a delta-loader for optimized transfer 
     to Sunplus development boards (for leapfrog).  We showed it to the 
     vendor and then it showed up in the next IDE revision.
 .slide
+  .from 2006
+  .to 2009
   .slide-content
     I shipped lots of games,
     %ul
@@ -116,21 +169,29 @@
       %li Spiderman v.s. the Masked Menace (Plug and Play)
       %li and more...
 .slide
+  .from 2008
+  .to 2009
   .slide-content
     %p
       I did about 80% of the programming for Spiderman:  I wrote the tool,
       the engine, the gameplay, the AI systems, and all the level scripting.
       Everything but the art and the audio system.  It was a great 9 months.
 .slide
+  .from 2008
+  .to 2009
   .slide-content
     The tool for Spiderman relied upon my reflection system for C++
     which adds some dynamic features to the language.  By this point
     I was combing a hardcopy of the ANSI/ISO standard for features
     I could use.  I bet you never heard of access declarations, neither had I.
 .slide
+  .from 2007
+  .to 2009
   .slide-content
     We used SCons for the the build system, so I learn a little python too.
 .slide
+  .from 2010
+  .to 2011
   .slide-content
     %div
       %p
@@ -145,12 +206,16 @@
                   "5103/5656655460_16d1e62288.jpg"),   |
            :alt=>"New Tiltlens Fullframe Test"}        |
 .slide
+  .from 2011
+  .to 2012
   .slide-content
     %p
       I even have a few shots in the local paper
     %a{:href=>"http://www.flickr.com/photos/-adam/sets/72157626467454959/with/5647876504/", :target=>"_blank"}
       %img{:src=>"http://farm6.static.flickr.com/5110/5647876504_abcef811f1.jpg"}
 .slide
+  .from 2010
+  .to 2011
   .slide-content
     %p
       What brought me back to Santa Cruz
@@ -159,5 +224,8 @@
       redeveloping the public online order interface and then the
       point-of-sale itself.
 .slide
+  .from 2012
+  .to 2018
   .slide-content
+    I've got some time now, what will I do next?
 -# vim: set sw=2 ts=2 expandtab :

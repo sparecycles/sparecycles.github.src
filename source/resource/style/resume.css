@@ -2,6 +2,8 @@ body {
   background: black;
 }
 
+.slide .from,
+.slide .to { display: none }
 .slide {
   border-bottom: 1px solid #222;
   border-top: 1px solid #777;
@@ -12,6 +14,7 @@ body {
 }
 
 .slide-content {
+  width: 100%;
   padding: 0 10%;
   display: table-cell;
   text-align: center;
@@ -30,13 +33,61 @@ body {
 .slide:first-child { border-top: none; }
 .slide:last-child { border-bottom: none; }
 
-#timeline {
-  display: none;
+.timeline-container {
   position: fixed;
+  top: 0px;
+}
+
+.timeline {
+  left: 0;
   color: white;
+  white-space: nowrap;
+  position: relative;
 }
-#timeline .background {
+
+.timeline .tick {
+  display: inline-block;
+  position: absolute;
+  top: -1ex;
+}
+
+.timeline .tick .year {
+  position: relative;
+  left: -50%;
+} 
+
+.timeline.background {
   opacity: 0.5;
-  background-color: gray;
+  background-color: darkgreen;
+  padding-bottom: 50px;
 }
-  
+.timeline .indicator {
+  position: absolute;
+  background-color: white;
+  top: -20px;
+  height: 4px;
+  left: 0%;
+  right: 0%;
+  -webkit-transition-property: left, right;
+  -webkit-transition-duration: 1s;
+}
+
+.timeline .indicator .start {
+  display: inline;
+  float: left;
+  position: absolute;
+  left: -4px;
+  border-radius: 4px;
+  border: 4px solid white;
+  width: 0; height: 0;
+}
+
+.timeline .indicator .end {
+  display: inline;
+  float: right;
+  position: relative;
+  left: 4px;
+  border-radius: 4px;
+  border: 4px solid white;
+  width: 0; height: 0;
+}
