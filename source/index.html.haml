@@ -1,3 +1,8 @@
+- link = lambda do |text, href|
+  - capture_haml do
+    %a{:href=>href}><
+      = text
+
 - uses :story
 - uses :template
 - uses :prettify
@@ -19,7 +24,15 @@
       prettyPrint();
     });
 
-%h1
+%h1 Welcome
+%p
+  I am Adam Freidin.  An ex gamedeveloper turned webdeveloper living and
+  working in sunny Santa Cruz.
+%p
+  I am always interested in hearing about jobs, 
+  check out my #{link.call "resume", "/resume.html"}.
+
+%h1#Story
   Story
 
 %pre.main-example.prettyprint
@@ -78,12 +91,16 @@
     ]);
 .main
   %p.large-font
-    Lightweight, simple, scalable, modular metascripting.  Linearizes and abstracts callback chains.
+    Lightweight, simple, scalable, modular metascripting. 
+    Linearizes and abstracts callback chains.
     Makes complex flow simple.
   %p
     Story is a modular framework for handling asynchronous events.
 
   %div.target
+
+  %p
+    To learn more, please see the #{link.call "API docs", "/litijs?story"}.
 
 
 :javascript

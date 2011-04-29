@@ -1,4 +1,4 @@
-- link = lambda do |href, text|
+- link = lambda do |text, href|
   - capture_haml do
     %a{:href=>href}><
       = text
@@ -114,6 +114,8 @@
     My name is Adam Freidin
 
 .slide
+  .from 1982
+  .to 2012
   .slide-content
     I am a programmer.
     %br
@@ -168,7 +170,7 @@
 
 .slide
   .from 2006
-  .to 2009
+  .to 2008
   .slide-content
     I developed many different things there:
     %ul
@@ -188,7 +190,7 @@
     vendor and then it showed up in the next IDE revision.
 
 .slide
-  .from 2006
+  .from 2007
   .to 2009
   .slide-content
     We shipped lots of games,
@@ -212,31 +214,31 @@
       Everything but the art and the audio system.  It was a great 9 months.
 
 .slide
-  .from 2007.5
-  .to 2008.5
+  .from 2007
+  .to 2009
   .slide-content
     The tool for Spiderman relied upon my reflection system for C++
     which adds some dynamic features to the language.
 
 .slide
-  .from 2007
-  .to 2009
+  .from 2007.5
+  .to 2009.5
   .slide-content
     We used SCons for the the build system,
     so I learned a little python too.
 
 .slide
-  .from 2010
+  .from 2010.5
   .to 2011
   .slide-content
     %p
-      I also love photography.
-      I have a few shots in the local paper:
+      I also do photography.
+      I have a few shots that made it into a local paper:
     %img{:src=>("dancers.jpg")}  |
 
 .slide
-  .from 2010
-  .to 2011
+  .from 2010.75
+  .to 2011.3
   .slide-content
     %p
       I returned to Santa Cruz to work at 
@@ -247,12 +249,20 @@
       the HTML5 web application Point of Sale
 
 .slide
-  .from 2011
+  .from 2011.5
   .to 2012
   .slide-content
     %p
       Now I'm taking a break to bring a few projects to light, such as
-      #{link.call "/litijs.html?story", "Story"}, a pattern for scripting.  And
-      #{link.call "/reflect-docs/", "reflect"}, the C++ reflection engine.
-   
+      "Story", a pattern for scripting.  And "reflect", the aforementioneed C++ 
+      reflection engine.
+
+.slide
+  .from 2012
+  .to 2015
+  .slide-content
+    %p
+      Thanks for reading, please contact me at 
+      \#{link.call "adam.freidin@gmail.com", "mailto:adam.freidin@gmail.com"}
+      \with any questions, comments, or job offers.
 -# vim: set sw=2 ts=2 expandtab :

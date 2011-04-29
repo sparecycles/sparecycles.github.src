@@ -28,6 +28,8 @@ body {
 
 .slide-content li {
   text-align: left;
+  position: relative;
+  left: 60%;
 }
 
 .slide:first-child { border-top: none; }

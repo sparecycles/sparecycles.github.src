@@ -47,7 +47,7 @@ h1 {
 
 pre.main-example {
   float: right;
-  width: 400px;
+  width: 650px;
   background: #DDC;
 }
 
@@ -88,3 +88,6 @@ pre.main-example {
   margin: 5px;
   border-radius: 20px;
 }
+
+a { color: white }
+a:visited { color: #CCC }
