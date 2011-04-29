@@ -34,8 +34,10 @@ body {
 .slide:last-child { border-bottom: none; }
 
 .timeline-container {
+  top: -100px;
   position: fixed;
-  top: 0px;
+  -webkit-transition: top, opacity;
+  -webkit-transition-duration: 0.7s;
 }
 
 .timeline {
@@ -48,7 +50,7 @@ body {
 .timeline .tick {
   display: inline-block;
   position: absolute;
-  top: -1ex;
+  top: -3ex;
 }
 
 .timeline .tick .year {
@@ -59,12 +61,12 @@ body {
 .timeline.background {
   opacity: 0.5;
   background-color: darkgreen;
-  padding-bottom: 50px;
+  padding-bottom: 30px;
 }
 .timeline .indicator {
   position: absolute;
   background-color: white;
-  top: -20px;
+  top: -4ex;
   height: 4px;
   left: 0%;
   right: 0%;

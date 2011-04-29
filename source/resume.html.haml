@@ -19,7 +19,7 @@
 - content_for :script do
   :plain
     jQuery(function($) {
-      $(window).bind('resize', function(){
+      $(window).resize(function(){
         $('.slide').css({
          'height' : $(window).height() 
         });
@@ -30,7 +30,7 @@
         $('.timeline').css({
          'width' : $('body').width()
         });
-      });
+      }).resize();
 
       $('a').click(function(event) {
         event.stopPropagation();
@@ -45,7 +45,6 @@
         }
       });
 
-      $(window).resize();
       $(window).scroll(function(ev) {
         var slides = $('.slide');
         var scrollTop = $(window).scrollTop();
@@ -61,11 +60,24 @@
         var t_start = 1980;
         var t_end = 2020;
         var t_scale = 100/(t_end-t_start);
+        var t_from = Number($('.from', slide).text());
+        var t_to = Number($('.to', slide).text());
+        if(t_from && t_to) {
+          $('.timeline-container').css({
+            top: "0px"
+          });
+        } else {
+          $('.timeline-container').css({
+            top: "-80px"
+          });
+          t_from = 1970;
+          t_to = 2020;
+        }
         $('.timeline .indicator').css({
-          left: ((Number($('.from', slide).text()) || 1982) - t_start)*t_scale + "%",
-          right: (t_end - (Number($('.to', slide).text()) || 2010))*t_scale + "%"
-        });
-      });
+          left: ((t_from || 1982) - t_start)*t_scale + "%",
+          right: (t_end - (t_to || 2010))*t_scale + "%"
+        }); 
+      }).scroll();
     });
 
 .timeline-container
@@ -99,6 +111,8 @@
 .slide
   .slide-content
     I am a programmer.
+    %br
+    This is my resume.
 .slide
   .from 1987
   .to 1992
@@ -109,14 +123,14 @@
   .from 1992
   .to 1993
   .slide-content
-    \...and started programming when I was 10.
+    \...and started programming in Pascal when I was 10.
 .slide
   .slide-content
-    By the end of highschool I knew Pascal and C (and C++), (and a
+    By the end of highschool I knew C (and C++), (and a
     really poorly implemented language I developed 
-    because I didn't know that I couldn't), also T
+    because I didn't know that I couldn't), I was also really bad at T
     %span.tex-e>< E
-    X, and a teensy bit o' Forth.
+    X, but I didn't know it then.
 .slide
   .from 2001
   .to 2005
@@ -129,7 +143,8 @@
   .slide-content
     At UCSC, I experienced more C, C++,
     ML, Lisp, Scheme, Prolog, SQL (and xQuery), PHP, and Java.
-    I also had a small programming job involving server and client-side java.
+    I also had a small programming job doing both 
+    server and client-side java.
 .slide
   .from 2006
   .to 2009
@@ -149,7 +164,7 @@
       %li late 80's-type graphics engines,
       %li AI frameworks, and
       %li a localization framework.
-.slide
+-# .slide
   .from 2006
   .to 2009
   .slide-content
@@ -160,7 +175,7 @@
   .from 2006
   .to 2009
   .slide-content
-    I shipped lots of games,
+    We shipped lots of games,
     %ul
       %li Superman Returns (DS)
       %li Superman Returns - Fortress of Solitude (GBA) -- Highest rated superman game EVER
@@ -173,7 +188,9 @@
   .to 2009
   .slide-content
     %p
-      I did about 80% of the programming for Spiderman:  I wrote the tool,
+      I was project lead on the Spiderman title:
+    %p 
+      I wrote the tool,
       the engine, the gameplay, the AI systems, and all the level scripting.
       Everything but the art and the audio system.  It was a great 9 months.
 .slide
@@ -181,9 +198,11 @@
   .to 2009
   .slide-content
     The tool for Spiderman relied upon my reflection system for C++
-    which adds some dynamic features to the language.  By this point
+    which adds some dynamic features to the language.
+
+    By this point
     I was combing a hardcopy of the ANSI/ISO standard for features
-    I could use.  I bet you never heard of access declarations, neither had I.
+    I could use.  So, I know C++.
 .slide
   .from 2007
   .to 2009
@@ -196,8 +215,7 @@
     %div
       %p
         After Santa Cruz Games closed I spent some time at home
-        and picked up Photography.  Sometimes I even think I 
-        might be getting good.
+        and picked up Photography.
     %a{:href=>"http://www.flickr.com/photos/-adam/5656655460/",          |
        :title=>"New Tiltlens Fullframe Test by Adam Freidin, on Flickr", |
        :target=>"_blank"}                                                |
@@ -218,14 +236,16 @@
   .to 2011
   .slide-content
     %p
-      What brought me back to Santa Cruz
-      was a rails startup called LineMonkey.  They're working on
+      I returned to Santa Cruz to work at 
+      a rails startup called LineMonkey building 
       a Point of Sale running on HTML5.  They threw me at
       redeveloping the public online order interface and then the
       point-of-sale itself.
 .slide
-  .from 2012
-  .to 2018
+  .from 2011
+  .to 2012
   .slide-content
-    I've got some time now, what will I do next?
+    Now I'm taking a break to bring a few projects to light.
+    Story, a pattern for scripting. 
+   
 -# vim: set sw=2 ts=2 expandtab :
