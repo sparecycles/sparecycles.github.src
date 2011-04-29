@@ -5,6 +5,10 @@ echo cd `dirname $0` && pushd `dirname $0`
 git submodule update --init
 
 (
+  cd ext/reflect && ./makedoc
+)
+
+(
   cd build
   rm -rf adam-f.github.com
   mkdir adam-f.github.com
@@ -20,6 +24,9 @@ for file in source/*.html.haml; do
   echo generating $target
   ruby shaml.rb $file app >"$path/$target" || exit 1
 done
+
+rm -rf $path/reflect-docs/
+cp -r ext/reflect/doc/reflect-docs $path/
 
 mkdir "$path/storyjs"
 mkdir "$path/storyjs/story"

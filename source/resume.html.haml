@@ -1,3 +1,7 @@
+- link = lambda do |href, text|
+  - capture_haml do
+    %a{:href=>href}><
+      = text
 - uses :template
 - uses :story
 
@@ -40,7 +44,6 @@
 
       $('.slide').live('click', function() {
         var next_slide = $(this).next('.slide');
-        if(!next_slide.length) next_slide = $('.slide').eq(0);
         if(next_slide.length) {
           $('html,body').stop(true, true).animate({
             scrollTop: next_slide.eq(0).offset().top
@@ -109,22 +112,26 @@
 .slide
   .slide-content
     My name is Adam Freidin
+
 .slide
   .slide-content
     I am a programmer.
     %br
     This is my resume.
+
 .slide
   .from 1987
   .to 1992
   .slide-content
     %p I was introduced to computers when I was little...
     %img{:src=>"early.jpg"}
+
 .slide
   .from 1992
   .to 1993
   .slide-content
     \...and started programming in Pascal when I was 10.
+
 .slide
   .from 1996
   .to 2001
@@ -134,12 +141,14 @@
     because I didn't know that I couldn't), I was also really bad at T
     %span.tex-e>< E
     X, but I didn't know it then.
+
 .slide
   .from 2001
   .to 2005
   .slide-content
-    I studied at UCSC and received a planned BA in Mathematics,
+    I went to UCSC and received a planned BA in Mathematics,
     and an unplanned BS in Computer Science.
+
 .slide
   .from 2002
   .to 2005
@@ -148,6 +157,7 @@
     ML, Lisp, Scheme, Prolog, SQL (and xQuery), PHP, and Java.
     I also had a small programming job doing both 
     server and client-side java.
+
 .slide
   .from 2006
   .to 2009
@@ -155,6 +165,7 @@
     I then worked at Santa Cruz Games right in 
     downtown Santa Cruz developing Video Games.
     I would say Embedded Systems, except it was fun.
+
 .slide
   .from 2006
   .to 2009
@@ -167,6 +178,7 @@
       %li late 80's-type graphics engines,
       %li AI frameworks, and
       %li a localization framework.
+
 -# .slide
   .from 2006
   .to 2009
@@ -174,6 +186,7 @@
     I even developed a delta-loader for optimized transfer 
     to Sunplus development boards (for leapfrog).  We showed it to the 
     vendor and then it showed up in the next IDE revision.
+
 .slide
   .from 2006
   .to 2009
@@ -186,6 +199,7 @@
       %li Tombraider Underworld (DS)
       %li Spiderman v.s. the Masked Menace (Plug and Play)
       %li and more...
+
 .slide
   .from 2008
   .to 2009
@@ -196,18 +210,21 @@
       I wrote the tool,
       the engine, the gameplay, the AI systems, and all the level scripting.
       Everything but the art and the audio system.  It was a great 9 months.
+
 .slide
   .from 2007.5
   .to 2008.5
   .slide-content
     The tool for Spiderman relied upon my reflection system for C++
     which adds some dynamic features to the language.
+
 .slide
   .from 2007
   .to 2009
   .slide-content
     We used SCons for the the build system,
     so I learned a little python too.
+
 .slide
   .from 2010
   .to 2011
@@ -216,6 +233,7 @@
       I also love photography.
       I have a few shots in the local paper:
     %img{:src=>("dancers.jpg")}  |
+
 .slide
   .from 2010
   .to 2011
@@ -223,15 +241,18 @@
     %p
       I returned to Santa Cruz to work at 
       a rails startup called LineMonkey building 
-      a Point of Sale running on HTML5.  They threw me at
-      redeveloping the public online order interface and then the
-      point-of-sale itself.
+      a Point&nbsp;of&nbsp;Sale running on HTML5.
+    %p
+      My job was to reimplement the public interface and
+      the HTML5 web application Point of Sale
+
 .slide
   .from 2011
   .to 2012
   .slide-content
     %p
-      Now I'm taking a break to bring a few projects to light.
-      Story, a pattern for scripting.  And a few other things.
+      Now I'm taking a break to bring a few projects to light, such as
+      #{link.call "/litijs.html?story", "Story"}, a pattern for scripting.  And
+      #{link.call "/reflect-docs/", "reflect"}, the C++ reflection engine.
    
 -# vim: set sw=2 ts=2 expandtab :
