@@ -61,7 +61,7 @@
         console.log(slide_index);
         var slide = slides.eq(slide_index);
         var t_start = 1980;
-        var t_end = 2020;
+        var t_end = 2015;
         var t_scale = 100/(t_end-t_start);
         var t_from = Number($('.from', slide).text());
         var t_to = Number($('.to', slide).text());
@@ -91,20 +91,18 @@
       .end
     -# .tick{:style=>"left:0%"}
       .year 1980
-    .tick{:style=>"left:12.5%"}
+    .tick{:style=>"left:14.28%"}
       .year 1985
-    .tick{:style=>"left:25%"}
+    .tick{:style=>"left:28.56%"}
       .year 1990
-    .tick{:style=>"left:37.5%"}
+    .tick{:style=>"left:42.84%"}
       .year 1995
-    .tick{:style=>"left:50%"}
+    .tick{:style=>"left:57.12%"}
       .year 2000
-    .tick{:style=>"left:62.5%"}
+    .tick{:style=>"left:71.40%"}
       .year 2005
-    .tick{:style=>"left:75%"}
+    .tick{:style=>"left:85.68%"}
       .year 2010
-    .tick{:style=>"left:87.5%"}
-      .year 2015
     -# .tick{:style=>"left:100%"}
       .year 2020
 
@@ -238,7 +236,8 @@
   .from 2011
   .to 2012
   .slide-content
-    Now I'm taking a break to bring a few projects to light.
-    Story, a pattern for scripting. 
+    %p
+      Now I'm taking a break to bring a few projects to light.
+      Story, a pattern for scripting.  And a few other things.
    
 -# vim: set sw=2 ts=2 expandtab :
