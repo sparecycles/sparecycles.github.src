@@ -23,10 +23,12 @@
         $('.slide').css({
          'height' : $(window).height() 
         });
+
         $('.slide-content').css({
          'width' : $('body').width(),
          'height' : $(window).height()
         })
+
         $('.timeline').css({
          'width' : $('body').width()
         });
@@ -35,11 +37,12 @@
       $('a').click(function(event) {
         event.stopPropagation();
       });
+
       $('.slide').live('click', function() {
         var next_slide = $(this).next('.slide');
         if(!next_slide.length) next_slide = $('.slide').eq(0);
         if(next_slide.length) {
-          $('html,body').animate({
+          $('html,body').stop(true, true).animate({
             scrollTop: next_slide.eq(0).offset().top
           }, 'slow');
         }
@@ -194,8 +197,8 @@
       the engine, the gameplay, the AI systems, and all the level scripting.
       Everything but the art and the audio system.  It was a great 9 months.
 .slide
-  .from 2008
-  .to 2009
+  .from 2007.5
+  .to 2008.5
   .slide-content
     The tool for Spiderman relied upon my reflection system for C++
     which adds some dynamic features to the language.
@@ -212,25 +215,15 @@
   .from 2010
   .to 2011
   .slide-content
-    %div
-      %p
-        After Santa Cruz Games closed I spent some time at home
-        and picked up Photography.
-    %a{:href=>"http://www.flickr.com/photos/-adam/5656655460/",          |
-       :title=>"New Tiltlens Fullframe Test by Adam Freidin, on Flickr", |
-       :target=>"_blank"}                                                |
-      -# --
-      %img{:src=>("http://farm6.static.flickr.com/" +  |
-                  "5103/5656655460_16d1e62288.jpg"),   |
-           :alt=>"New Tiltlens Fullframe Test"}        |
-.slide
-  .from 2011
-  .to 2012
-  .slide-content
     %p
-      I even have a few shots in the local paper
-    %a{:href=>"http://www.flickr.com/photos/-adam/sets/72157626467454959/with/5647876504/", :target=>"_blank"}
-      %img{:src=>"http://farm6.static.flickr.com/5110/5647876504_abcef811f1.jpg"}
+      I also love photography.
+      I have a few shots in the local paper:
+    %a{:href=>("http://www.flickr.com/photos/-adam/" +     |
+               "sets/72157626467454959/with/5647876504/"), |
+       :target=>"_blank"}                                  |
+      -# --
+      %img{:src=>("http://farm6.static.flickr.com/" + |
+                  "5110/5647876504_abcef811f1.jpg")}  |
 .slide
   .from 2010
   .to 2011
