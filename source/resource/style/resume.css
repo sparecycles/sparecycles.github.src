@@ -60,7 +60,7 @@ body {
 
 .timeline.background {
   opacity: 0.5;
-  background-color: darkgreen;
+  background-color: lightgreen;
   padding-bottom: 30px;
 }
 .timeline .indicator {
