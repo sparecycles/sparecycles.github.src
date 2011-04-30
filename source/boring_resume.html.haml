@@ -1,0 +1,138 @@
+- content_for :style do
+  :plain
+    body {
+      background: #EEE;
+      width: 960px;
+      font-size: 1.5em;
+    }
+    .big { font-size: 1.5em; }
+    @media print { body { background: white } }
+    .date { display: inline }
+    .label { font-weight: bold;  }
+
+%center.big
+  Adam Freidin
+  %br
+  adam.freidin@gmail.com
+  %br
+  831-359-5121
+
+%h1 Objective
+
+To design, and develop great infrastructure.
+
+%h1 Qualifications
+
+%ul
+  %li Programming lead on a Video Game.
+  %li Toolchain development in C++ and Qt.
+  %li Debugging in C, C++ and Assembly.
+  %li Writing to spec.
+  %li History of finding and fixing inconsistencies in specifications.
+  %li Ability to work alone or in a team.
+  %li Open Source enthusiast.
+  %li Focused on semantics over implementations.
+
+%h1 History
+
+%ul
+  %li 
+    .date 2011-Present 
+    Independant Consultant
+    %ul
+      %li Released stuff on github
+      %li Researched API design and security implemention.
+  %li 
+    .date 2010-2011 
+    Lead Programmer at LineMonkey
+    %ul
+      %li 
+        Redeveloped the Public Interface and the 
+        Point-of-Sale HTML5 application.
+      %li Developed in Ruby, Rails, HAML, SQL, and JavaScript simultaneously.
+      %li Perfomed security analysis and made suggestions.
+      %li Solved issues with bad data in production.
+      %li Perfomed on-site client support.
+  %li
+    .date 2 weeks of 2009 
+    %ul
+      %li
+        Integration task involving a CNC Machine, the Canon Camera API, with 
+        a Qt interface.
+      %li
+        Working prototype delivered in 2 weeks, involving a novel use of
+        win32 fibers used to interface Qt and a shell-loop in visual basic.
+  %li
+    .date 2006-2009 
+    Programmer at Santa Cruz Games
+    %ul
+      %li 
+        Shipped 7 titles, on the Nintendo DS, GBA, and 
+        Jakks Pacific custom hardware.
+      %li Developed stable memory architectures and loading patterns.
+      %li Developed localization engine.
+      %li Implemented Menus and in-game ui.
+      %li Integrated with publisher's localization pipelines.
+      %li Implemented hardware specific effects.
+  %li
+    .date 2005-2006
+    Mathematician Intern at GizmoLabs
+    %ul
+      %li 
+        Invented a projection matrix that interpolates 
+        between perspective and orthographic display. 
+      %li
+        Reimplemented and extended the OpenGL graphics component of
+        a simple woodworking CAD layout program.
+  %li 
+    .date 2004-2005 
+    Programmer for LEEPS at UCSC.
+    %ul
+      %li Developed client and server components for reasearch games.
+      %li Implemented java parser-evaluator for implementing game-rules.
+      %li
+        Designed and developed a statemachine 
+        for managing server and client states.
+  %li 
+    .date 1998-1999 
+    Audiovisual Consultant at Princeton Adult School.
+    %ul
+      %li Delivered, cleaned up, and supported slide projectors.
+
+%h1 Technologies
+%ul.labeled
+  %li 
+    .label Programming Languages
+    C, C++, JavaScript, Ruby, Python, Java, Bash, Batch, 
+    Objective-C, Scheme/Lisp, ML,
+    Prolog.  (Procedural, functional, and logical styles)
+    .label Markup Languages/Encodings
+    HTML, XML, TeX, CSS, JSON, S37 ?
+  %li 
+    .label Platforms
+    Browsers: webkit, gecko, trident;  
+    %br
+    Embedded Systems: Nintedo DS, Nintendo GameBoy Advance, &mu;'nSP;
+    %br
+    Operating Systems: Linux (POSIX), Mac OS9, OSX, Win2K/XP/Vista;
+    %br
+    Hosting Services: UCSC Homepage (PHP), Heroku, Github;
+  %li
+    .label Tools
+    Version Control: Visual Source Safe, Subversion, Git;
+    %br
+    Graphical UIs: Qt, HTML5;
+    %br
+    IDEs: gcc+vim+make, Visual Studio, Metrowerks/Freescale, SN Systems,
+    X-code;
+    %br
+    Graphics: The GIMP, inkscape, UFRaw, Qtpfsgui.
+  %li
+    .label Libraries/Frameworks
+    Rails, jQuery, Windows API, libc, readline.
+  %li 
+    .label Education
+    BS Computer Science, and a BA Mathematics from 
+    University of California, Santa Cruz.
+  
+-# vim: set sw=2 ts=2 expandtab :
