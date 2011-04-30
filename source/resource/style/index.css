@@ -66,6 +66,7 @@ pre.main-example {
   position: absolute;
   margin: 40px 40px;
   font-size: 1.7em;
+  z-index: 1;
 }
 
 .connect4 .cell {
