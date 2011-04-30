@@ -54,9 +54,9 @@ done
 
 (
   cd build/adam-f.github.com
-  git add *
-  git commit -m "$USER: commiting website on `date`"
   if [[ "$1" = "--push" ]]; then
+	git add *
+	git commit -m "$USER: commiting website on `date`"
     git push --force target master
   fi
 )

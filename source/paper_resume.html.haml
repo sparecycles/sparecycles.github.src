@@ -1,16 +1,43 @@
+- content_for :title do
+  Adam's Resume
+
 - content_for :style do
   :plain
     body {
       background: #EEE;
-      width: 960px;
-      font-size: 1.5em;
+      font-size: 1.3em;
     }
-    .big { font-size: 1.5em; }
-    @media print { body { background: white } }
+    .big { font-size: 1.2em; }
     .date { display: inline }
     .label { font-weight: bold;  }
+    h1 { 
+      font-family: sans-serif;
+      font-size: 1em;
+    }
+    li {
+      list-style-type: square;
+    }
+    #container {
+      margin: auto;
+      width: 960px;
+    }
+    #content {
+      margin: 8px;
+    }
 
-%center.big
+    li li {
+      list-style-type: none;
+      text-indent: -1em;
+      left: -1em;
+      margin-right: 1em;
+      position: relative;
+    }
+
+    @media print { 
+      body { background: white } 
+    }
+
+.big
   Adam Freidin
   %br
   adam.freidin@gmail.com
@@ -24,13 +51,13 @@ To design, and develop great infrastructure.
 %h1 Qualifications
 
 %ul
-  %li Programming lead on a Video Game.
-  %li Toolchain development in C++ and Qt.
-  %li Debugging in C, C++ and Assembly.
-  %li Writing to spec.
-  %li History of finding and fixing inconsistencies in specifications.
-  %li Ability to work alone or in a team.
-  %li Open Source enthusiast.
+  %li Programming lead on a Video Game,
+  %li Toolchain development in C++ and Qt,
+  %li Debugging in C, C++ and Assembly,
+  %li Writing to spec,
+  %li History of finding and fixing inconsistencies in specifications,
+  %li Ability to work alone or in a team,
+  %li Open Source enthusiast,
   %li Focused on semantics over implementations.
 
 %h1 History
@@ -40,7 +67,7 @@ To design, and develop great infrastructure.
     .date 2011-Present 
     Independant Consultant
     %ul
-      %li Released stuff on github
+      %li Released story, template, and reflect on github.
       %li Researched API design and security implemention.
   %li 
     .date 2010-2011 
@@ -54,14 +81,22 @@ To design, and develop great infrastructure.
       %li Solved issues with bad data in production.
       %li Perfomed on-site client support.
   %li
-    .date 2 weeks of 2009 
+    .date 2 weeks of 2009 - Tenera
     %ul
       %li
         Integration task involving a CNC Machine, the Canon Camera API, with 
-        a Qt interface.
+        a Qt Graphical User Interface.
       %li
-        Working prototype delivered in 2 weeks, involving a novel use of
-        win32 fibers used to interface Qt and a shell-loop in visual basic.
+        Program took pictures at a sequence of coordinates by sending
+        G-code to the CNC tool to move the camera and the Canon API to
+        shoot.  Automatically found focus by selecting a Z-value 
+        with the highest local contrast.
+      %li
+        Working prototype delivered in 2 weeks.
+      %li 
+        Implemented inversion-of-control using
+        win32 fibers to interface cleanly between Qt and the 
+        visual basic script in the CNC tool.  
   %li
     .date 2006-2009 
     Programmer at Santa Cruz Games
@@ -71,7 +106,7 @@ To design, and develop great infrastructure.
         Jakks Pacific custom hardware.
       %li Developed stable memory architectures and loading patterns.
       %li Developed localization engine.
-      %li Implemented Menus and in-game ui.
+      %li Implemented Menus and in-game UI.
       %li Integrated with publisher's localization pipelines.
       %li Implemented hardware specific effects.
   %li
@@ -80,13 +115,13 @@ To design, and develop great infrastructure.
     %ul
       %li 
         Invented a projection matrix that interpolates 
-        between perspective and orthographic display. 
+        between perspective and orthographic display.
       %li
         Reimplemented and extended the OpenGL graphics component of
         a simple woodworking CAD layout program.
   %li 
     .date 2004-2005 
-    Programmer for LEEPS at UCSC.
+    Programmer for LEEPS at UCSC
     %ul
       %li Developed client and server components for reasearch games.
       %li Implemented java parser-evaluator for implementing game-rules.
@@ -95,7 +130,7 @@ To design, and develop great infrastructure.
         for managing server and client states.
   %li 
     .date 1998-1999 
-    Audiovisual Consultant at Princeton Adult School.
+    Audiovisual Consultant at Princeton Adult School
     %ul
       %li Delivered, cleaned up, and supported slide projectors.
 
@@ -107,32 +142,32 @@ To design, and develop great infrastructure.
     Objective-C, Scheme/Lisp, ML,
     Prolog.  (Procedural, functional, and logical styles)
     .label Markup Languages/Encodings
-    HTML, XML, TeX, CSS, JSON, S37 ?
+    HTML, XML, TeX, CSS, JSON, CSV, HAML, Unicode
   %li 
     .label Platforms
-    Browsers: webkit, gecko, trident;  
+    Browsers: webkit (chrome, safari), gecko (firefox, netscape), trident (explorer)
     %br
-    Embedded Systems: Nintedo DS, Nintendo GameBoy Advance, &mu;'nSP;
+    Embedded Systems: Nintedo DS, Nintendo GameBoy Advance, &mu;'nSP
     %br
-    Operating Systems: Linux (POSIX), Mac OS9, OSX, Win2K/XP/Vista;
+    Operating Systems: Linux (POSIX), Mac OS9, OSX, Win2K/XP/Vista
     %br
-    Hosting Services: UCSC Homepage (PHP), Heroku, Github;
+    Hosting Services: Heroku, Github, Speedyrails
   %li
     .label Tools
-    Version Control: Visual Source Safe, Subversion, Git;
+    Version Control: Visual Source Safe, Subversion, Git
     %br
-    Graphical UIs: Qt, HTML5;
+    Graphical UIs: Qt, HTML5
     %br
     IDEs: gcc+vim+make, Visual Studio, Metrowerks/Freescale, SN Systems,
-    X-code;
+    X-code
     %br
-    Graphics: The GIMP, inkscape, UFRaw, Qtpfsgui.
+    Graphics: The GIMP, inkscape, UFRaw, Qtpfsgui
   %li
     .label Libraries/Frameworks
-    Rails, jQuery, Windows API, libc, readline.
-  %li 
-    .label Education
-    BS Computer Science, and a BA Mathematics from 
-    University of California, Santa Cruz.
+    Rails, jQuery, Windows API, libc, readline
+%h1 Education
+%ul
+  %li BS in Computer Science, and a 
+  %li BA in Mathematics from University of California, Santa Cruz.
   
 -# vim: set sw=2 ts=2 expandtab :
