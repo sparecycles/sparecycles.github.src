@@ -112,9 +112,9 @@
     for(var col = 0; col < game.columns.length; col++) {
       var column = jQuery('<div class="column"/>').appendTo(c4);
       for(var row =  game.rows-1; row >= 0; row--) {
-        jQuery('<div class="cell"/>')
-          .appendTo(column)
-          .addClass(game.columns[col][row]);
+        jQuery('<div class="cell-content"/>').appendTo(
+          jQuery('<div class="cell"/>').appendTo(column)
+        ).addClass(game.columns[col][row]);
       }
     }
   };
