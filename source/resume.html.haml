@@ -61,7 +61,6 @@
             break;
           }
         }
-        console.log(slide_index);
         var slide = slides.eq(slide_index);
         var t_start = 1980;
         var t_end = 2015;
@@ -109,9 +108,17 @@
     -# .tick{:style=>"left:100%"}
       .year 2020
 
+- content_for :style do
+  :plain
+    img.mouse {
+      position: absolute;
+      left: 3%;
+      top: 3%;
+    }
 .slide
   .slide-content
     My name is Adam Freidin
+    %img.mouse{:src=>"mouse.png"}
 
 .slide
   .from 1982
