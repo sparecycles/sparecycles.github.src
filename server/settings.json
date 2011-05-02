@@ -3,5 +3,12 @@
 
     "default_host" : {
         "root" : "build/adam-f.github.com/"
-    }
+    },
+
+    "file_extensions" : [
+        ".html",
+        ".xhtml",
+        ".htm",
+        ".sjs"
+    ]
 }

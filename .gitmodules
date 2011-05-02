@@ -3,7 +3,7 @@
 	url = git@github.com:adam-f/storyjs.git
 [submodule "ext/antinode"]
 	path = ext/antinode
-	url = https://github.com/mhansen/antinode.git
+	url = git@github.com:adam-f/antinode.git
 [submodule "ext/reflect"]
 	path = ext/reflect
 	url = git://github.com/adam-f/reflect.git
