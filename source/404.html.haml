@@ -1,0 +1,18 @@
+- content_for :style do
+  :plain
+    * { margin: 0 }
+%table
+  %td{:style=>"text-align: center; font-size: 2em; font-weight: bold; font-family: sans-serif"}
+    enum { False, True, FileNotFound = 404 };
+- content_for :import_javascripts do
+  storyjs/jquery-1.5.2 
+:javascript
+  $('body').click(function() {
+    window.location = "/";
+  });
+  $(window).resize(function() {
+    $('table').css({
+      width: $(window).width(),
+      height: $(window).height()
+    });
+  }).resize();

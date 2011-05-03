@@ -2,6 +2,7 @@
 
 pushd "`dirname "$0"`"/..
 
-node ext/antinode/server.js server/settings.json
+#node antinode/server.js server/settings.json
+node server/fable.js
 
 popd
