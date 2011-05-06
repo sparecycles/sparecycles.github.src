@@ -1,9 +1,6 @@
 [submodule "ext/storyjs"]
 	path = ext/storyjs
 	url = git@github.com:adam-f/storyjs.git
-[submodule "ext/antinode"]
-	path = ext/antinode
-	url = git@github.com:adam-f/antinode.git
 [submodule "ext/reflect"]
 	path = ext/reflect
 	url = git://github.com/adam-f/reflect.git

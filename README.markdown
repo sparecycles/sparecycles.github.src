@@ -10,8 +10,7 @@ you will need to:
 
     gem install haml
 
-and also download and install a recentish (compatible with antinode)
-node.js somehow to run the server.
+and have node installed.
 
 * generate by running ./generate
 * generate and run the server with ./generate --run
