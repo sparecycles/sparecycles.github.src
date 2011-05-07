@@ -6,6 +6,10 @@
 - uses :story
 - uses :template
 
+- content_for :head do
+  %link{:type=>"text/plain", :rel=>"author", :href=>"/humans.txt"}
+
+
 - content_for :import_stylesheets do
   style/index
 

@@ -1,3 +1,6 @@
+- content_for :head do
+  %link{:type=>"text/plain", :rel=>"author", :href=>"/humans.txt"}
+
 - link = lambda do |text, href|
   - capture_haml do
     %a{:href=>href}><

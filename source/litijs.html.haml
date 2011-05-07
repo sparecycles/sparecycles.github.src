@@ -1,5 +1,8 @@
+
 - uses :litijs
 
+- content_for :head do
+  %link{:type=>"text/plain", :rel=>"author", :href=>"/humans.txt"}
 
 - content_for :title do
   Litijs Documentation
