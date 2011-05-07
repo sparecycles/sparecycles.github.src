@@ -1,0 +1,6 @@
+What is a man?  A miserable little pile of secrets!
+
+StoryJS was written by Adam Freidin and this website was developed with
+the generous support of Mike Xu.
+
+Adam's resume is here: http://adam-f.github.com/resume
