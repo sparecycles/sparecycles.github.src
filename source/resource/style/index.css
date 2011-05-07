@@ -5,6 +5,8 @@
 
 body {
   -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -o-transition: 1s;
   padding: 0 3px;
   font-family: sans-serif;
   margin: auto;
@@ -29,6 +31,8 @@ body.loaded h1 {
 p {
   color: #CDC;
   -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -o-transition: 1s;
 }
 
 p:hover {
@@ -42,7 +46,31 @@ h1 {
   background-color: #636;
   color: #DED;
   padding: 5px;
+  padding-left: 10px;
   border-radius: 10px;
+}
+ul.nav {
+  list-style: none;
+  padding: 0;
+}
+.nav li {
+  display: inline;
+  border: 0; padding: 0; margin: 0;
+}
+.nav li a {
+  margin: -3px;
+  border: 2px solid #666;
+  background-color: #636;
+  color: #DED;
+  padding: 5px 30px;
+  text-decoration: none;
+}
+.nav li:first-child a {
+  border-radius: 10px 0 0 10px;
+  margin-left: 0px;
+}
+.nav li:last-child a {
+  border-radius: 0 10px 10px 0;
 }
 
 pre.main-example {

@@ -40,6 +40,10 @@ body {
   position: fixed;
   -webkit-transition: top, opacity;
   -webkit-transition-duration: 0.7s;
+  -moz-transition: top, opacity;
+  -moz-transition-duration: 0.7s;
+  -o-transition: top, opacity;
+  -o-transition-duration: 0.7s;
 }
 
 .timeline {
@@ -74,6 +78,10 @@ body {
   right: 0%;
   -webkit-transition-property: left, right;
   -webkit-transition-duration: 1s;
+  -moz-transition-property: left, right;
+  -moz-transition-duration: 1s;
+  -o-transition-property: left, right;
+  -o-transition-duration: 1s;
 }
 
 .timeline .indicator .start {
