@@ -4,3 +4,6 @@
 [submodule "ext/reflect"]
 	path = ext/reflect
 	url = git://github.com/adam-f/reflect.git
+[submodule "ext/coffee-script"]
+	path = ext/coffee-script
+	url = https://github.com/jashkenas/coffee-script.git
