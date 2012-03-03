@@ -108,12 +108,16 @@ var RewriteStory = new Story(Story.Catch("data:file", Story.Consequence(
   Story.ReadFile("%{root}/%{path}"),
   Story.ReadFile("%{root}/%{path}.html"),
   Story.ReadFile("%{root}/%{path}.htm"),
+  Story.ReadFile("%{root}/%{path}/index.html"),
   Story.ReadFile("%{root}/404.html")
 ), function() {
   var path = Story.wire("file").path;
   fs.readFile(path, Story.callback(function(err, data) {
     var response = Story.read("response");
-    response.writeHead(200, {'Content-Type': MimeTypeForPath(path)});
+    response.writeHead(200, {
+      'Content-Type': MimeTypeForPath(path), 
+      'Location': path
+    });
     response.end(data);
   }));
 }));
