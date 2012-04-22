@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='speechbubble/style.css' rel='stylesheet' type='text/css' />
+    <script src='speechbubble/jquery-1.7.2.js' type='text/javascript'></script>
+    <script src='speechbubble/editor.js' type='text/javascript'></script>
+  </head>
+  <body>
+    <div class='content'>
+      <div class='editor'>
+        <div class='toolbar'>
+          <img class='tool' id='speech' src='speechbubble/speech.png' />
+          <img class='tool' id='thought' src='speechbubble/thought.png' />
+          <img class='tool' id='delete' src='speechbubble/delete.png' />
+          <img id='load' src='speechbubble/load.png' />
+        </div>
+        <div class='picture-v-container'>
+          <div class='picture-h-container'>
+            <div class='picture-container'>
+              <img class='picture' />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='templates' style='display:none'>
+      <div id='speech-template'>
+        <div class='speech bubble' data-type='speech'>
+          <p class='text'></p>
+        </div>
+      </div>
+      <div id='thought-template'>
+        <div class='thought bubble' data-type='thought'>
+          <p class='text'></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

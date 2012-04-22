@@ -1,0 +1,25 @@
+!!!5
+%html
+  %head
+    %link{:rel=>"stylesheet",:href=>"speechbubble/style.css",:type=>"text/css"}
+    %script{:src=>"speechbubble/jquery-1.7.2.js",:type=>"text/javascript"}
+    %script{:src=>"speechbubble/editor.js",:type=>"text/javascript"}
+  %body
+    .content
+      .editor
+        .toolbar
+          %img.tool#speech{:src=>"speechbubble/speech.png"}
+          %img.tool#thought{:src=>"speechbubble/thought.png"}
+          %img.tool#delete{:src=>"speechbubble/delete.png"}
+          %img#load{:src=>"speechbubble/load.png"}
+        .picture-v-container
+          .picture-h-container
+            .picture-container
+              %img.picture
+    #templates{:style=>"display:none"}
+      #speech-template
+        .speech.bubble{:'data-type'=>'speech'}
+          %p.text
+      #thought-template
+        .thought.bubble{:'data-type'=>'thought'}
+          %p.text
