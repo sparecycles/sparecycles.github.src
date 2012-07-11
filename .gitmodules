@@ -7,3 +7,6 @@
 [submodule "ext/coffee-script"]
 	path = ext/coffee-script
 	url = https://github.com/jashkenas/coffee-script.git
+[submodule "ext/focalmatter"]
+	path = ext/focalmatter
+	url = https://github.com/adam-f/focalmatter.git
