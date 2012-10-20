@@ -1,12 +1,12 @@
 [submodule "ext/storyjs"]
 	path = ext/storyjs
-	url = git@github.com:adam-f/storyjs.git
-[submodule "ext/reflect"]
-	path = ext/reflect
-	url = git://github.com/adam-f/reflect.git
+	url = git@github.com:sparecycles/storyjs.git
 [submodule "ext/coffee-script"]
 	path = ext/coffee-script
-	url = https://github.com/jashkenas/coffee-script.git
+	url = git://github.com/sparecycles/reflect.git
+[submodule "ext/reflect"]
+	path = ext/reflect
+	url = git://github.com/sparecycles/reflect.git
 [submodule "ext/focalmatter"]
 	path = ext/focalmatter
-	url = https://github.com/adam-f/focalmatter.git
+	url = https://github.com/sparecycles/focalmatter.git

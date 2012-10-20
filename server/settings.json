@@ -2,7 +2,7 @@
     "port" : 3000,
 
     "default_host" : {
-        "root" : "build/adam-f.github.com/"
+        "root" : "build/sparecycles.github.com/"
     },
 
     "file_extensions" : [

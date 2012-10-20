@@ -59,6 +59,7 @@ jQuery(function($) {
     if(tool === 'delete') {
       $(this).remove();
     }
+    serialize();
   });
   $('.picture').click(function(event) {
     switch(tool) {

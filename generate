@@ -9,15 +9,19 @@ git submodule update --init
 )
 
 (
-  cd build
-  rm -rf adam-f.github.com
-  mkdir adam-f.github.com
-  cd adam-f.github.com
-  git init
-  git remote add target git@github.com:adam-f/adam-f.github.com.git
+  cd ext/focalmatter && make
 )
 
-path=build/adam-f.github.com
+(
+  cd build
+  rm -rf sparecycles.github.com
+  mkdir sparecycles.github.com
+  cd sparecycles.github.com
+  git init
+  git remote add target git@github.com:sparecycles/sparecycles.github.com.git
+)
+
+path=build/sparecycles.github.com
 
 for file in source/*.html.haml; do 
   target=`basename $file .haml`
@@ -52,8 +56,11 @@ for file in source/resource/*; do
   cp -r "$file" "$path/"
 done 
 
+mkdir "$path/focalmatter"
+cp ext/focalmatter/{index.{js,html},focal.js,raphael.js} $path/focalmatter
+
 (
-  cd build/adam-f.github.com
+  cd build/sparecycles.github.com
   if [[ "$1" = "--push" ]]; then
     git add *
     git commit -m "$USER: commiting website on `date`"
