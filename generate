@@ -60,7 +60,7 @@ done
 mkdir "$path/focalmatter"
 cp ext/focalmatter/{index.{js,html},focal.js,raphael.js} $path/focalmatter
 
-( cd ext/solid && make )
+( cd ext/solid && git clean -dxf && make )
 mkdir -p "$path/solid/src"
 cp -r ext/solid/{index.html,lib} $path/solid
 cp -r ext/solid/src/*.js $path/solid/src
