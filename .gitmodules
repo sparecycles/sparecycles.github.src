@@ -10,3 +10,6 @@
 [submodule "ext/focalmatter"]
 	path = ext/focalmatter
 	url = https://github.com/sparecycles/focalmatter.git
+[submodule "ext/solid"]
+	path = ext/solid
+	url = https://github.com/sparecycles/solid.git
