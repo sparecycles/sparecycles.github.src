@@ -1,7 +1,7 @@
-adam-f.github.src
+sparecycles.github.src
 =================
 
-This is the source for http://adam-f.github.com
+This is the source for http://sparecycles.github.io
 
 * Edit the (haml) sources in ./source/
 * Change how it generates in ./generate
