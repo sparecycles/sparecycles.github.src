@@ -35,7 +35,6 @@ cp -r ext/reflect/doc/reflect-docs $path/
 mkdir "$path/storyjs"
 mkdir "$path/storyjs/story"
 mkdir "$path/resource"
-mkdir "$path/solid"
 
 for file in ext/storyjs/story/*.js; do
   echo cp "$file" "$path/storyjs/story/"
@@ -59,11 +58,6 @@ done
 
 mkdir "$path/focalmatter"
 cp ext/focalmatter/{index.{js,html},focal.js,raphael.js} $path/focalmatter
-
-( cd ext/solid && git clean -dxf && make )
-mkdir -p "$path/solid/src"
-cp -r ext/solid/{index.html,lib} $path/solid
-cp -r ext/solid/src/*.js $path/solid/src
 
 (
   cd build/sparecycles.github.io
