@@ -14,14 +14,14 @@ git submodule update --init
 
 (
   cd build
-  rm -rf sparecycles.github.com
-  mkdir sparecycles.github.com
-  cd sparecycles.github.com
+  rm -rf sparecycles.github.io
+  mkdir sparecycles.github.io
+  cd sparecycles.github.io
   git init
-  git remote add target git@github.com:sparecycles/sparecycles.github.com.git
+  git remote add target git@github.com:sparecycles/sparecycles.github.io.git
 )
 
-path=build/sparecycles.github.com
+path=build/sparecycles.github.io
 
 for file in source/*.html.haml; do 
   target=`basename $file .haml`
@@ -66,7 +66,7 @@ cp -r ext/solid/{index.html,lib} $path/solid
 cp -r ext/solid/src/*.js $path/solid/src
 
 (
-  cd build/sparecycles.github.com
+  cd build/sparecycles.github.io
   if [[ "$1" = "--push" ]]; then
     git add *
     git commit -m "$USER: commiting website on `date`"
