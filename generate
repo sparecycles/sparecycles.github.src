@@ -9,7 +9,7 @@ git submodule update --init
 )
 
 (
-  cd ext/focalmatter && make
+  cd ext/focalmatter && ( test -d node_modules/requirejs || npm install requirejs ) && make
 )
 
 (
@@ -57,7 +57,7 @@ for file in source/resource/*; do
 done 
 
 mkdir "$path/focalmatter"
-cp ext/focalmatter/{index.{js,html},focal.js,raphael.js} $path/focalmatter
+cp -r ext/focalmatter/{index.html,build,raphael.js,require.js} $path/focalmatter
 
 (
   cd build/sparecycles.github.io
